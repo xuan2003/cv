@@ -1,0 +1,155 @@
+package tw.edu.pu.csim.s1102294.asdfgh
+
+import android.media.MediaPlayer
+import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
+import android.view.GestureDetector
+import android.view.MotionEvent
+import android.view.View
+import android.widget.Button
+import android.widget.TextView
+
+class cvb5 : AppCompatActivity(), GestureDetector.OnGestureListener , View.OnTouchListener {
+    lateinit var gDetector: GestureDetector
+    lateinit var txvc: TextView
+    lateinit var txvtitle: TextView
+    lateinit var txvt1: TextView
+    lateinit var play: Button
+    lateinit var stop: Button
+    lateinit var txvt2: TextView
+    lateinit var play2: Button
+    lateinit var stop2: Button
+    lateinit var txvt3: TextView
+    lateinit var play3: Button
+    lateinit var stop3: Button
+    private var count: Int = 1
+    var mper = MediaPlayer()
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_cvb5)
+
+
+        gDetector = GestureDetector(this, this)
+        txvc = findViewById(R.id.txvc)
+        txvtitle = findViewById(R.id.txvtitle1)
+        txvt1 = findViewById(R.id.txvt1)
+        txvt2 = findViewById(R.id.txvt2)
+        txvt3 = findViewById(R.id.txvt3)
+        play = findViewById(R.id.play)
+        play.setOnClickListener {
+            mper.reset()
+            mper = MediaPlayer.create(this, R.raw.s1)
+            mper.start()
+        }
+        stop = findViewById(R.id.stop)
+        stop.setOnClickListener {
+            mper.stop()
+        }
+        play2 = findViewById(R.id.play2)
+        play2.setOnClickListener {
+            mper.reset()
+            mper = MediaPlayer.create(this, R.raw.s2)
+            mper.start()
+        }
+        stop2 = findViewById(R.id.stop2)
+        stop2.setOnClickListener {
+            mper.stop()
+        }
+        play3 = findViewById(R.id.play3)
+        play3.setOnClickListener {
+            mper.reset()
+            mper = MediaPlayer.create(this, R.raw.s3)
+            mper.start()
+        }
+        stop3 = findViewById(R.id.stop3)
+        stop3.setOnClickListener {
+            mper.stop()
+        }
+        txvt1.visibility = View.INVISIBLE
+        play.visibility = View.INVISIBLE
+        stop.visibility = View.INVISIBLE
+        txvt2.visibility = View.INVISIBLE
+        play2.visibility = View.INVISIBLE
+        stop2.visibility = View.INVISIBLE
+        txvt3.visibility = View.INVISIBLE
+        play3.visibility = View.INVISIBLE
+        stop3.visibility = View.INVISIBLE
+        txvtitle.text = "\n續續點燈\n"
+        txvc.text = "藝海佳音 配音演員，中文廣播劇CV。\n直播平台：貓耳\n(https://www.missevan.com/3193701?share_channel=copy)\n\n\n\n   < --------左右滑進入聲展-------- >>"
+    }
+    override fun onTouchEvent(event: MotionEvent): Boolean {
+        gDetector.onTouchEvent(event)
+        return true
+    }
+
+    override fun onDown(p0: MotionEvent): Boolean {
+        return true
+    }
+
+    override fun onShowPress(p0: MotionEvent) {
+    }
+
+    override fun onSingleTapUp(p0: MotionEvent): Boolean {
+
+        return true
+    }
+
+    override fun onScroll(e1: MotionEvent, e2: MotionEvent, distanceX: Float, distanceY: Float): Boolean {
+        return true
+    }
+
+    override fun onLongPress(p0: MotionEvent) {
+
+    }
+
+    override fun onFling(e1: MotionEvent, e2: MotionEvent, velocityX: Float, velocityY: Float): Boolean {
+        if (e1.x <= e2.x){
+            count++
+            if(count > 2) {
+                count = 1
+            }
+        }
+        else{
+            count--
+            if(count < 1) {
+                count = 2
+            }
+        }
+        var res:Int = getResources().getIdentifier("cv" + count.toString(),
+            "drawable", getPackageName())
+        if (count == 1){
+            txvtitle.text = "\n續續點燈\n"
+            txvc.text = "藝海佳音 配音演員，中文廣播劇CV。\n直播平台：貓耳\n(https://www.missevan.com/3193701?share_channel=copy)\n\n\n\n   < --------左右滑進入聲展-------- >"
+            txvt1.visibility = View.INVISIBLE
+            play.visibility = View.INVISIBLE
+            stop.visibility = View.INVISIBLE
+            txvt2.visibility = View.INVISIBLE
+            play2.visibility = View.INVISIBLE
+            stop2.visibility = View.INVISIBLE
+            txvt3.visibility = View.INVISIBLE
+            play3.visibility = View.INVISIBLE
+            stop3.visibility = View.INVISIBLE
+        } else {
+            txvtitle.text = "\n聲音展示"
+            txvc.text = ""
+            txvt1.visibility = View.VISIBLE
+            play.visibility = View.VISIBLE
+            stop.visibility = View.VISIBLE
+            txvt2.visibility = View.VISIBLE
+            play2.visibility = View.VISIBLE
+            stop2.visibility = View.VISIBLE
+            txvt3.visibility = View.VISIBLE
+            play3.visibility = View.VISIBLE
+            stop3.visibility = View.VISIBLE
+            txvt1.text = "雨-續續點燈\n"
+            txvt2.text = "放肆-續續點燈&Mr.岑\n"
+            txvt3.text = "放空-續續點燈&Mr.岑(男偽女)\n"
+        }
+        return true
+    }
+
+    override fun onTouch(p0: View?, p1: MotionEvent?): Boolean {
+        TODO("Not yet implemented")
+    }
+}

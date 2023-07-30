@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CvgActivity"
+    android:orientation="vertical">
+
+    <Button
+        android:id="@+id/btncvg1"
+        android:layout_width="match_parent"
+        android:layout_height="300px"
+        android:text="小N"
+        android:textSize="25dp" />
+
+    <Button
+        android:id="@+id/btncvg2"
+        android:layout_width="match_parent"
+        android:layout_height="300px"
+        android:text="花玲"
+        android:textSize="25dp" />
+
+    <Button
+        android:id="@+id/btncvg3"
+        android:layout_width="match_parent"
+        android:layout_height="300px"
+        android:text="杜冥鴉"
+        android:textSize="25dp" />
+
+    <Button
+        android:id="@+id/btncvg4"
+        android:layout_width="match_parent"
+        android:layout_height="300px"
+        android:text="秦紫翼"
+        android:textSize="25dp" />
+
+
+    <Button
+        android:id="@+id/btncvg5"
+        android:layout_width="match_parent"
+        android:layout_height="300px"
+        android:text="金喵兒"
+        android:textSize="25dp" />
+
+    <Button
+        android:id="@+id/btncvg6"
+        android:layout_width="match_parent"
+        android:layout_height="300px"
+        android:text="水母"
+        android:textSize="25dp" />
+</LinearLayout>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".cvb"
+    android:orientation="vertical">
+
+    <Button
+        android:id="@+id/btncvb1"
+        android:layout_width="match_parent"
+        android:layout_height="300px"
+        android:text="鹿喑"
+        android:textSize="25dp"
+        android:onClick="cvb1"/>
+
+    <Button
+        android:id="@+id/btncvb2"
+        android:layout_width="match_parent"
+        android:layout_height="300px"
+        android:text="彭博"
+        android:textSize="25dp"
+        android:onClick="cvb2"/>
+
+    <Button
+        android:id="@+id/btncvb3"
+        android:layout_width="match_parent"
+        android:layout_height="300px"
+        android:onClick="cvb3"
+        android:text="Kinsen "
+        android:textSize="25dp" />
+
+    <Button
+        android:id="@+id/btncvb4"
+        android:layout_width="match_parent"
+        android:layout_height="300px"
+        android:text="Mr.岑"
+        android:textSize="25dp" />
+
+    <Button
+        android:id="@+id/btncvb5"
+        android:layout_width="match_parent"
+        android:layout_height="300px"
+        android:text="續續點燈"
+        android:textSize="25dp"
+        android:onClick="cvb5"/>
+
+    <Button
+        android:id="@+id/btncvb6"
+        android:layout_width="match_parent"
+        android:layout_height="300px"
+        android:text="景向誰依"
+        android:textSize="25dp"
+        android:onClick="cvb6"/>
+
+</LinearLayout>
