@@ -40,7 +40,7 @@ class home : AppCompatActivity() {
         btnquery = findViewById(R.id.btnquery)
         btnquery.setOnClickListener {
             if (id != null) {
-                db.collection(id) // Correct the collection name to match your actual Firestore collection (user)
+                db.collection(id)
                     .whereEqualTo("主播名稱", name.text.toString())
                     .get()
                     .addOnCompleteListener { task ->

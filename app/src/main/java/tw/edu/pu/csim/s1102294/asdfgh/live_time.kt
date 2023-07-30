@@ -53,8 +53,8 @@ class live_time : AppCompatActivity() {
                     "直播平台" to live.text.toString(),
                     "直播時間" to spinner.selectedItem.toString() + " " + txvtimeshow.text
                 )
-                db.collection(id) // 將 "user" 改為 "users" 來避免和 "user" 預設的使用者集合名稱混淆
-                    .document(name.text.toString()) // 使用使用者 UID 作為文件 ID
+                db.collection(id)
+                    .document(name.text.toString())
                     .set(user)
                     .addOnSuccessListener {
                         Toast.makeText(this, "新增/異動資料成功", Toast.LENGTH_LONG).show()
