@@ -40,9 +40,14 @@ class home : AppCompatActivity() {
         btnquery = findViewById(R.id.btnquery)
         btnquery.setOnClickListener {
             if (id != null) {
-                db.collection(id)
-                    .whereEqualTo("主播名稱", name.text.toString())
-                    .get()
+                val query = if (name.text.isNullOrEmpty()) {
+                    db.collection(id)
+                } else {
+                    db.collection(id)
+                        .whereEqualTo("主播名稱", name.text.toString())
+                }
+
+                query.get()
                     .addOnCompleteListener { task ->
                         if (task.isSuccessful) {
                             var msg: String = ""
@@ -59,7 +64,6 @@ class home : AppCompatActivity() {
                         }
                     }
             }
-
         }
 
         btndelete = findViewById(R.id.btndelete)
