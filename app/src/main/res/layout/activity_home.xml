@@ -85,7 +85,7 @@
     <TextView
         android:id="@+id/textView2"
         android:layout_width="match_parent"
-        android:layout_height="190dp"
+        android:layout_height="200dp"
         android:text="需先至直播提醒設定"
         android:textSize="20sp" />
 
