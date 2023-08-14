@@ -9,7 +9,6 @@ class UserPreferences(context: Context) {
         private const val KEY_USER_LOGGED_IN = "userLoggedIn"
         private const val KEY_USER_UID = "userUid"
     }
-
     private val sharedPreferences: SharedPreferences =
         context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE)
 

@@ -25,25 +25,28 @@ class home : AppCompatActivity() {
     lateinit var textView2:TextView
     lateinit var btndelete:Button
 
+    var id = FirebaseAuth.getInstance().currentUser?.uid
+    val db = FirebaseFirestore.getInstance()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
 
         val userUid = intent.getStringExtra("userUid")
-        val db = FirebaseFirestore.getInstance()
+
+        dataview() //顯示資料庫所有內容
+
         name = findViewById(R.id.name)
         textView2 = findViewById(R.id.textView2)
         textView2.setMovementMethod(ScrollingMovementMethod.getInstance())
-
-        val id = FirebaseAuth.getInstance().currentUser?.uid // 取得使用者 UID
 
         btnquery = findViewById(R.id.btnquery)
         btnquery.setOnClickListener {
             if (id != null) {
                 val query = if (name.text.isNullOrEmpty()) {
-                    db.collection(id)
+                    db.collection(id!!)
                 } else {
-                    db.collection(id)
+                    db.collection(id!!)
                         .whereEqualTo("主播名稱", name.text.toString())
                 }
 
@@ -69,7 +72,7 @@ class home : AppCompatActivity() {
         btndelete = findViewById(R.id.btndelete)
         btndelete.setOnClickListener {
             if (id != null) {
-                db.collection(id)
+                db.collection(id!!)
                     .document(name.text.toString())
                     .delete()
             }
@@ -131,18 +134,34 @@ class home : AppCompatActivity() {
     private fun logoutUser() {
         // 使用 Firebase 身分驗證進行登出
         firebaseAuth.signOut()
-        // 清除使用者登入狀態
-        setUserLoggedInState(false)
         // 轉到 Login
         val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
         finish()
     }
+        private fun dataview() {
+            if (id != null) {
+                db.collection(id!!)
+                    .get()
+                    .addOnCompleteListener { task ->
+                        if (task.isSuccessful) {
+                            var msg: String = ""
+                            for (document in task.result!!) {
+                                msg += "主播名稱：" + document.data["主播名稱"] +
+                                        "\n直播平台：" + document.data["直播平台"].toString() +
+                                        "\n直播時間：" + document.data["直播時間"].toString() + "\n\n"
+                            }
+                            if (msg.isNotEmpty()) {
+                                textView2.text = msg
+                            } else {
+                                textView2.text = "資料庫中無資料"
+                            }
+                        } else {
+                            // 資料獲取失敗，處理錯誤
+                            Toast.makeText(this, "資料獲取失敗", Toast.LENGTH_SHORT).show()
+                        }
+                    }
+            }
+        }
 
-    private fun setUserLoggedInState(loggedIn: Boolean) {
-        // 假設 UserPreferences 是一個自定義的類，用於處理使用者登入狀態等偏好設置
-        // 此處為示意，請自行定義 UserPreferences 類
-        //val userPreferences = UserPreferences(this)
-        //userPreferences.userLoggedIn = loggedIn
-    }
 }
