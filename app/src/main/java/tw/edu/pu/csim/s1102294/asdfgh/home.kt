@@ -154,7 +154,7 @@ class home : AppCompatActivity() {
                             if (msg.isNotEmpty()) {
                                 textView2.text = msg
                             } else {
-                                textView2.text = "資料庫中無資料"
+                                textView2.text = "目前暫無資料，請移至直播提醒設定"
                             }
                         } else {
                             // 資料獲取失敗，處理錯誤
